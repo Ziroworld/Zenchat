@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:zenchat/Theme/dark_mode.dart';
 import 'package:zenchat/Theme/light_mode.dart';
+import 'package:zenchat/auth/auth.dart';
 import 'package:zenchat/auth/login_or_register.dart';
 import 'package:zenchat/firebase_options.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginOrRegister(),
+      home: const AuthPage(),
       theme: lightMode,
       darkTheme: darkMode,
     );
