@@ -19,11 +19,11 @@ class HomePage extends StatelessWidget {
         actions: [
           // Logout Button
           IconButton(
-            onPressed: logout, 
+            onPressed: logout,
             icon: const Icon(Icons.logout_rounded),
           ),
         ],
-        ),
+      ),
     );
   }
 }

@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
   final void Function()? onTap;
 
   const LoginPage({super.key, required this.onTap});
+  // addding route here 
 
   @override
   State<LoginPage> createState() => _LoginPageState();
