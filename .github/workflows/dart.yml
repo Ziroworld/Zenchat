@@ -26,8 +26,11 @@ jobs:
         uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       # Navigate to the Zenchat/zenchat_Flutter_app directory
-      - name: Navigate to Zenchat/zenchat_Flutter_app directory
-        run: cd Zenchat/zenchat_Flutter_app
+      - name: Navigate to Zenchat directory
+        run: cd Zenchat
+
+      - name: Navigate to zenchat_Flutter_app directory
+        run: cd zenchat_Flutter_app
 
       - name: Install dependencies
         run: dart pub get
