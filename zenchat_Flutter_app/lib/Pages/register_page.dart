@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zenchat/Components/my_buttons.dart';
@@ -43,28 +44,43 @@ class _RegisterPageState extends State<RegisterPage> {
     }
     //will work only if the password works
     else {
-    // try creating the user
-    try {
-      // create the user
-      UserCredential? userCredential =
+      // try creating the user
+      try {
+        // create the user
+        UserCredential? userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+          email: emailController.text,
+          password: passwordController.text,
+        );
 
-      // pop the loading ciicle
-      Navigator.pop(context);
+        // create a user document and add to the firebase database
+        createUserDocument(userCredential);
 
-      }on FirebaseAuthException catch (e) {
-      // poping loading circle
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
+        // pop the loading ciicle
+        if (context.mounted) Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        // poping loading circle
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
 
-      // display error message
-      // ignore: use_build_context_synchronously
-      displayMessageToUser(e.code, context);
-      
+        // display error message
+        // ignore: use_build_context_synchronously
+        displayMessageToUser(e.code, context);
+
       }
+    }
+  }
+
+  // createing a new methode called user document to stoe data in firestore
+  Future<void> createUserDocument(UserCredential? userCredential) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection("User")
+          .doc(userCredential.user!.email)
+          .set({
+        'email': userCredential.user!.email,
+        'username': usernameController.text,
+      });
     }
   }
 
