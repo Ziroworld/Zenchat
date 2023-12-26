@@ -13,7 +13,14 @@ class PostButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Center(child: Icon(Icons.done)),
+        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.only(left: 10),
+        child: Center(
+          child: Icon(
+            Icons.done,
+            color: Theme.of(context).colorScheme.primary,
+          )
+        ),
       ),
     );
   }
