@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:zenchat/Pages/home_page.dart';
-import 'package:zenchat/Pages/profile_page.dart';
-import 'package:zenchat/Pages/user_page.dart';
+import 'package:zenchat/View/home_page.dart';
+import 'package:zenchat/View/profile_page.dart';
+import 'package:zenchat/View/user_page.dart';
 import 'package:zenchat/Theme/dark_mode.dart';
 import 'package:zenchat/Theme/light_mode.dart';
-import 'package:zenchat/auth/auth.dart';
-import 'package:zenchat/auth/login_or_register.dart';
+import 'package:zenchat/Repositories/auth.dart';
+import 'package:zenchat/Repositories/login_or_register.dart';
 import 'package:zenchat/firebase_options.dart';
 
 void main() async {

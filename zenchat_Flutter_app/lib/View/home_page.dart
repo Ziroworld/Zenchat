@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                   child: MyTextField(
                     hintText: "Say something...",
                     obscureText: false,
-                    controller: newPostController,
+                    controller: newPostController, 
                   ),
                 ),
 

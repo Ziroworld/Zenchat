@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
       try {
         // create the user
         UserCredential? userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
@@ -66,7 +66,6 @@ class _RegisterPageState extends State<RegisterPage> {
         // display error message
         // ignore: use_build_context_synchronously
         displayMessageToUser(e.code, context);
-
       }
     }
   }
@@ -156,18 +155,6 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 15,
             ),
 
-            // forgot password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary),
-                ),
-              ],
-            ),
-
             const SizedBox(
               height: 20,
             ),
@@ -192,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 GestureDetector(
                   onTap: widget.onTap,
                   child: const Text(
-                    "Login Here",
+                    " Login Here",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

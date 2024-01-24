@@ -10,11 +10,11 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("U S E R S"),
-        backgroundColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("U S E R S"),
+      //   backgroundColor: Theme.of(context).colorScheme.background,
+      //   elevation: 0,
+      // ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("User").snapshots(),
@@ -38,23 +38,40 @@ class UserPage extends StatelessWidget {
           //get all users
           final users = snapshot.data!.docs;
 
-          
           return Column(
             children: [
               // back button
               const Padding(
-                    padding: EdgeInsets.only(
-                      top: 55.0,
-                      left: 25,
-                    ),
-                    child: Row(
-                      children: [
-                        MyBackButton(),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
+                padding: EdgeInsets.only(
+                  top: 55.0,
+                  left: 25,
+                  right:
+                      25, // Added some right padding to ensure the text doesn't go too far right
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .spaceBetween, // Ensure even spacing between children
+                  children: [
+                    MyBackButton(), // This stays on the left
 
+                    Text(
+                      'U S E R S',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(
+                        width:
+                            50), // Adjust the width as necessary to fine-tune the centering
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+
+              // list of the users in the app
               Expanded(
                 child: ListView.builder(
                   itemCount: users.length,
@@ -62,11 +79,11 @@ class UserPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     // get individual users
                     final user = users[index];
-                
+
                     // get data from each user
                     String username = user['username'];
                     String email = user['email'];
-                
+
                     return MyListTile(title: username, subTitile: email);
                   },
                 ),

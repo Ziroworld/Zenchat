@@ -10,17 +10,16 @@ class PostButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.only(left: 10),
         child: Center(
-          child: Icon(
-            Icons.done,
-            color: Theme.of(context).colorScheme.primary,
-          )
-        ),
+            child: Icon(
+          Icons.done,
+          color: Theme.of(context).colorScheme.inversePrimary,
+        )),
       ),
     );
   }

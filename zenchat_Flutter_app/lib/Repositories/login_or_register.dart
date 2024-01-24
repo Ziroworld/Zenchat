@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zenchat/Pages/login_page.dart';
-import 'package:zenchat/Pages/register_page.dart';
+import 'package:zenchat/View/login_page.dart';
+import 'package:zenchat/View/register_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});

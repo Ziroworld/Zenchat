@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:zenchat/auth/login_or_register.dart';
-import '../Pages/home_page.dart';
+import 'package:zenchat/Repositories/login_or_register.dart';
+import '../View/home_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
