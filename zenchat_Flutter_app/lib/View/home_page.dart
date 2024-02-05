@@ -37,73 +37,75 @@ class HomePage extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const MyDrawer(),
-      body: Column(
-        children: [
-          // TEXTFIELD BOX FOR USER TO TYPE
-          Padding(
-            padding: const EdgeInsets.all(25),
-            child: Row(
-              children: [
-                Expanded(
-                  child: MyTextField(
-                    hintText: "Say something...",
-                    obscureText: false,
-                    controller: newPostController, 
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // TEXTFIELD BOX FOR USER TO TYPE
+            Padding(
+              padding: const EdgeInsets.all(25),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: MyTextField(
+                      hintText: "Say something...",
+                      obscureText: false,
+                      controller: newPostController, 
+                    ),
                   ),
-                ),
-
-                // Post Button
-                PostButton(
-                  onTap: postMessage,
-                ),
-              ],
+        
+                  // Post Button
+                  PostButton(
+                    onTap: postMessage,
+                  ),
+                ],
+              ),
             ),
-          ),
-          // POSTS
-          StreamBuilder(
-            stream: database.getPostsStream(),
-            builder: (context, snapshot) {
-              // show loading Circle
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              //get all of the posts
-              final posts = snapshot.data!.docs;
-
-              // no data
-              if (snapshot.data == null || posts.isEmpty) {
-                return const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(25),
-                    child: Text("No posts has been made... Posting something!"),
+            // POSTS
+            StreamBuilder(
+              stream: database.getPostsStream(),
+              builder: (context, snapshot) {
+                // show loading Circle
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                //get all of the posts
+                final posts = snapshot.data!.docs;
+        
+                // no data
+                if (snapshot.data == null || posts.isEmpty) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(25),
+                      child: Text("No posts has been made... Posting something!"),
+                    ),
+                  );
+                }
+        
+                // return as a list
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: posts.length,
+                    itemBuilder: (context, index) {
+                      // get each individual post
+                      final post = posts[index];
+        
+                      //get data from each post
+                      String message = post['PostMessage'];
+                      String userEmail = post['UserEmail'];
+                      Timestamp timestamp = post['TimeStamp'];
+        
+                      // return as a list tile
+                      return MyListTile(
+                        title: message,
+                        subTitile: userEmail
+                      );
+                    },
                   ),
                 );
-              }
-
-              // return as a list
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: posts.length,
-                  itemBuilder: (context, index) {
-                    // get each individual post
-                    final post = posts[index];
-
-                    //get data from each post
-                    String message = post['PostMessage'];
-                    String userEmail = post['UserEmail'];
-                    Timestamp timestamp = post['TimeStamp'];
-
-                    // return as a list tile
-                    return MyListTile(
-                      title: message,
-                      subTitile: userEmail
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
